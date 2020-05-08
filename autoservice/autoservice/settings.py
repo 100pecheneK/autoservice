@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'knox',
 
     'frontend.apps.FrontendConfig',
-    'exampleService.apps.ExampleserviceConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -119,11 +119,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-    ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'knox.auth.TokenAuthentication',
-    # ),
-    'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.AllowAny'
+    # ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    ),
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
 }
+
+AUTH_USER_MODEL = 'accounts.User'
