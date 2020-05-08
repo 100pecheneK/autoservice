@@ -1,28 +1,27 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Router, Route, Switch} from 'react-router-dom'
-
+import {Router, Route, Switch, Link} from 'react-router-dom'
 import LoginForm from "./auth"
 import history from '../history'
 import {Provider} from 'react-redux'
 import store from '../store'
 import PrivateRoute from "./common/PrivateRoute"
 
-import {loadUser, logout} from "../actions/auth"
+import {loadUser} from "../actions/auth"
+import './app.css'
+import {
+    AccountsPage,
+    ClientsPage,
+    GoodsPage,
+    HomePage,
+    Orders,
+} from './pages'
 
-
-class Hello extends Component {
-    render() {
-        return (
-            <button onClick={()=>store.dispatch(logout())}>EXIT</button>
-        );
-    }
-}
 
 class App extends Component {
 
     componentDidMount() {
-        store.dispatch(loadUser());
+        store.dispatch(loadUser())
     }
 
     render() {
@@ -30,18 +29,22 @@ class App extends Component {
             <Provider store={store}>
                 <Router history={history}>
                     <Switch>
-                        <PrivateRoute exact path='/' component={Hello}/>
+                        <PrivateRoute exact path='/accounts' component={AccountsPage}/>
+                        <PrivateRoute exact path='/clients' component={ClientsPage}/>
+                        <PrivateRoute exact path='/goods' component={GoodsPage}/>
+                        <PrivateRoute exact path='/' component={HomePage}/>
+                        <PrivateRoute exact path='/orders' component={Orders}/>
                         <Route exact path='/login' component={LoginForm}/>
                     </Switch>
                 </Router>
             </Provider>
-        );
+        )
     }
 }
 
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+const styleLink = document.createElement("link")
+styleLink.rel = "stylesheet"
+styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
+document.head.appendChild(styleLink)
 
-ReactDOM.render(<App/>, document.querySelector('#app'));
+ReactDOM.render(<App/>, document.querySelector('#app'))
