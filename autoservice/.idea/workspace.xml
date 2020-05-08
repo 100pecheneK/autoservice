@@ -86,7 +86,19 @@
       <option name="presentableId" value="Default" />
       <updated>1588482355742</updated>
       <workItem from="1588482361889" duration="10877000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1588761577557" duration="2199000" />
+>>>>>>> Stashed changes
     </task>
+    <task id="LOCAL-00001" summary="Создали страницы(роуты) и компоненты для:&#10;/&#10;/goods&#10;/orders&#10;/clients&#10;/accounts&#10;&#10;Создан основной компонент App с сайдбаром и сонтейнером для контента.&#10;&#10;Переподключили semanticUI">
+      <created>1588763739185</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588763739185</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,9 +109,17 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1588482871700" />
+    <state x="254" y="0" key="CommitChangelistDialog2" timestamp="1588763737150">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="254" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1588763737150" />
     <state x="229" y="89" key="SettingsEditor" timestamp="1588482891617">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1588482891617" />
+    <state x="314" y="175" key="Vcs.Push.Dialog.v2" timestamp="1588763746545">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="314" y="175" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.-180.1920.1080@0.0.1440.900" timestamp="1588763746545" />
   </component>
 </project>
