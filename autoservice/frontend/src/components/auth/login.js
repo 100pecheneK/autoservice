@@ -33,6 +33,9 @@ class LoginForm extends Component {
     }
 
     render() {
+        if (this.props.isAuthenticated){
+            return <Redirect to='/'/>
+        }
         return (
             <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 450}}>
