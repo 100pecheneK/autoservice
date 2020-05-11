@@ -31,7 +31,6 @@ class App extends Component {
                     <Switch>
                         <PrivateRoute exact path='/accounts' component={AccountsPage}/>
                         <PrivateRoute exact path='/clients' component={ClientsPage}/>
-                        <PrivateRoute exact path='/clients/create' component={ClientsCreatePage}/>
                         <PrivateRoute exact path='/goods' component={GoodsPage}/>
                         <PrivateRoute exact path='/' component={HomePage}/>
                         <PrivateRoute exact path='/orders' component={Orders}/>

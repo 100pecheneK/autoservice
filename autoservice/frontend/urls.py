@@ -7,7 +7,6 @@ urlpatterns = [
     path('home/', index),
     path('accounts/', index),
     path('clients/', index),
-    path('clients/create', index),
     path('goods/', index),
     path('orders/', index),
 ]
