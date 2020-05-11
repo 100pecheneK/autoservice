@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Router, Route, Switch, Link} from 'react-router-dom'
+import {Router, Route, Switch, Link, Redirect} from 'react-router-dom'
 import LoginForm from "./auth"
 import history from '../history'
 import {Provider} from 'react-redux'

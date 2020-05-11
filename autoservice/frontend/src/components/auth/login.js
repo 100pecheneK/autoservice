@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {Field, reduxForm} from 'redux-form';
-import {login} from '../../actions/auth';
+import React, {Component} from 'react'
+import {Link, Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Field, reduxForm} from 'redux-form'
+import {login} from '../../actions/auth'
 
 
 import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
@@ -16,8 +16,8 @@ class LoginForm extends Component {
                     <span className='ui pointing red basic label'>{error}</span>
                 )}
             </div>
-        );
-    };
+        )
+    }
 
     hiddenField = ({type, meta: {error}}) => {
         return (
@@ -25,17 +25,14 @@ class LoginForm extends Component {
                 <input type={type}/>
                 {error && <div className='ui red message'>{error}</div>}
             </div>
-        );
-    };
+        )
+    }
 
     onSubmit = formValues => {
-        this.props.login(formValues);
-    };
+        this.props.login(formValues)
+    }
 
     render() {
-        if (this.props.isAuthenticated) {
-            return <Redirect to='/'/>;
-        }
         return (
             <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 450}}>
@@ -69,7 +66,7 @@ class LoginForm extends Component {
                     </Form>
                 </Grid.Column>
             </Grid>
-        );
+        )
     }
 }
 
@@ -80,9 +77,9 @@ const mapStateToProps = state => ({
 LoginForm = connect(
     mapStateToProps,
     {login}
-)(LoginForm);
+)(LoginForm)
 
 export default reduxForm({
     form: 'loginForm'
-})(LoginForm);
+})(LoginForm)
 

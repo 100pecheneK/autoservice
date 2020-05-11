@@ -13,7 +13,6 @@ import {
 // LOAD USER
 export const loadUser = () => async (dispatch, getState) => {
     dispatch({type: USER_LOADING});
-    console.log('tokenConfig(getState)', tokenConfig(getState))
     try {
         const res = await axios.get('/api/auth/user', tokenConfig(getState));
 

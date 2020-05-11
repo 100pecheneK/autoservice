@@ -5,7 +5,7 @@ import rootReducer from './reducers';
 
 
 const logMiddleware = ({getState, dispatch}) => (next) => (action) => {
-    console.log(`⚙️${action.type}`, getState())
+    console.log(`${action.type}`, getState())
     return next(action)
 }
 
