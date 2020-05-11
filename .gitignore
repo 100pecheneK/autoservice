@@ -1,5 +1,6 @@
-*node_modules
-*.idea
-*__pycache__
-*env
-*.DS_Store
+**/node_modules
+**/.idea
+**/__pycache__
+**/env
+**/.DS_Store
+**/*.pyc
