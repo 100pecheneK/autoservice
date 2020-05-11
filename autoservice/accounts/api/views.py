@@ -4,10 +4,15 @@ from rest_framework.generics import (
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
 from knox.models import AuthToken
+from django.contrib.auth import get_user_model
 
-from .serializers import UserSerializer, LoginSerializer
+from .serializers import UserSerializer, LoginSerializer, AccountAPISerializer
+from .permissions import IsSuperUser
+
+User = get_user_model()
 
 
 class UserAPIView(RetrieveAPIView):
@@ -16,6 +21,13 @@ class UserAPIView(RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class AccountsAPIViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    permission_classes = [IsAuthenticated, IsSuperUser]
+    serializer_class = AccountAPISerializer
+
 
 
 # TODO: В будущих карточках будет регистрация
