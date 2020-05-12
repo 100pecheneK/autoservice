@@ -1,4 +1,4 @@
-import {Button, Icon, Label, Menu, Table} from "semantic-ui-react"
+import {Button, Icon, Menu, Table} from "semantic-ui-react"
 import React from "react"
 
 const TableExample = ({fields, data, rowClickHandler, deleteHandler}) => {
