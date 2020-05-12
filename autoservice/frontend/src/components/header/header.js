@@ -2,18 +2,16 @@ import React from 'react'
 import {Menu} from "semantic-ui-react"
 import {Link} from "react-router-dom"
 
-const Header = ({title, linkName='Создать', to}) => (
+const Header = ({title, create = true, to}) => (
     <Menu inverted>
         <Menu.Item
             name={title}
         />
         {to &&
         <Menu.Menu position='right'>
-            <Menu.Item
-                name={linkName}
-                as={Link}
-                to={to}
-            />
+            <Menu.Item>
+                <Link className={`ui button ${create ? 'green' : 'blue'}`} to={to}>{create ? 'Создать' : 'Назад'}</Link>
+            </Menu.Item>
         </Menu.Menu>
         }
     </Menu>
