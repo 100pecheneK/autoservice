@@ -5,7 +5,8 @@ from rest_framework.serializers import (
     ModelSerializer,
     Serializer,
     CharField,
-    ValidationError
+    ValidationError,
+    SerializerMethodField,
 )
 
 User = get_user_model()
@@ -18,6 +19,20 @@ class UserSerializer(ModelSerializer):
         fields = ('id', 'username', 'email')
 
 
+class AccountAPISerializer(ModelSerializer):
+    status = SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name', 'generic_name', 'username', 'email', 'phone_number', 'status')
+
+    def get_status(self, obj):
+        if obj.is_superuser:
+            return 'Админ'
+        if obj.is_staff:
+            return 'Сотрудник'
+
+
 class LoginSerializer(Serializer):
     username = CharField()
     password = CharField()
@@ -27,6 +42,7 @@ class LoginSerializer(Serializer):
         if user and user.is_active:
             return user
         raise ValidationError("Некорректные данные")
+
 # class RegisterSerializer(ModelSerializer):
 #     class Meta:
 #         model = User

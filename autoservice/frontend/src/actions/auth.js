@@ -14,7 +14,7 @@ import {
 export const loadUser = () => async (dispatch, getState) => {
     dispatch({type: USER_LOADING});
     try {
-        const res = await axios.get('/api/auth/user', tokenConfig(getState));
+        const res = await axios.get('/api/accounts/auth/user', tokenConfig(getState));
 
         dispatch({
             type: USER_LOADED,
@@ -40,7 +40,7 @@ export const login = ({username, password}) => async dispatch => {
     const body = JSON.stringify({username, password});
 
     try {
-        const res = await axios.post('/api/auth/login', body, config);
+        const res = await axios.post('/api/accounts/auth/login', body, config);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
@@ -54,7 +54,7 @@ export const login = ({username, password}) => async dispatch => {
 }
 
 export const logout = () => async (dispatch, getState) => {
-    await axios.post('/api/auth/logout', null, tokenConfig(getState));
+    await axios.post('/api/accounts/auth/logout', null, tokenConfig(getState));
     dispatch({
         type: LOGOUT_SUCCESS
     });

@@ -12,10 +12,10 @@ class ClientCreate extends Component {
 
     render() {
         return (
-            <MainContainer>
+            <>
                 <Header title={'Создание клиента'} to={'/clients'} create={false}/>
                 <ClientForm destroyOnUnmount={false} onSubmit={this.onSubmit}/>
-            </MainContainer>
+            </>
         )
     }
 }

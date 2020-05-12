@@ -1,14 +1,21 @@
 import React, {Component} from 'react'
-import MainContainer from "../../mainContainer"
+import {Route, Switch} from 'react-router-dom'
+
+import MainContainer from '../../mainContainer'
+import AccountDetail from "./accountDetail"
+import AccountsList from "./accountsList"
 import Header from "../../header"
-import TableExamplePagination from "../../table/table"
+import PrivateRoute from "../../common/PrivateRoute"
+
 
 class AccountsPage extends Component {
     render() {
         return (
             <MainContainer>
-                <Header title={'Аккаунты'}/>
-                <TableExamplePagination/>
+                <Switch>
+                    <PrivateRoute exact path='/accounts' component={AccountsList}/>
+                    <PrivateRoute path='/accounts/:id' component={AccountDetail}/>
+                </Switch>
             </MainContainer>
         )
     }

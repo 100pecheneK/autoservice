@@ -31,10 +31,8 @@ class App extends Component {
             <Provider store={store}>
                 <Router history={history}>
                     <Switch>
-                        <PrivateRoute exact path='/accounts' component={AccountsPage}/>
-                        <PrivateRoute exact path='/clients' component={ClientsPage}/>
-                        <PrivateRoute exact path='/clients/create' component={ClientCreate}/>
-                        <PrivateRoute path='/clients/:id' component={ClientDetail}/>
+                        <PrivateRoute path='/accounts' component={AccountsPage}/>
+                        <PrivateRoute path='/clients' component={ClientsPage}/>
                         <PrivateRoute exact path='/goods' component={GoodsPage}/>
                         <PrivateRoute exact path='/' component={HomePage}/>
                         <PrivateRoute exact path='/orders' component={Orders}/>

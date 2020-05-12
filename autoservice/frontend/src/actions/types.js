@@ -7,8 +7,14 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'LOGIN_FAIL'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
-export const GET_CLIENTS = 'GET_CLIENTS';
-export const GET_CLIENT = 'GET_CLIENT';
-export const ADD_CLIENT = 'ADD_CLIENT';
-export const DELETE_CLIENT = 'DELETE_CLIENT';
-export const EDIT_CLIENT = 'EDIT_CLIENT';
+export const GET_CLIENTS = 'GET_CLIENTS'
+export const GET_CLIENT = 'GET_CLIENT'
+export const ADD_CLIENT = 'ADD_CLIENT'
+export const DELETE_CLIENT = 'DELETE_CLIENT'
+export const EDIT_CLIENT = 'EDIT_CLIENT'
+
+export const GET_ACCOUNTS = 'GET_ACCOUNTS'
+export const GET_ACCOUNT = 'GET_ACCOUNT'
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT'
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT'
+export const ADD_ACCOUNT = 'ADD_ACCOUNT'
