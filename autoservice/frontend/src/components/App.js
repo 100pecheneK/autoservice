@@ -16,6 +16,8 @@ import {
     HomePage,
     Orders,
 } from './pages'
+import ClientCreate from "./pages/clients/clientCreate"
+import ClientDetail from "./pages/clients/clientDetail"
 
 
 class App extends Component {
@@ -31,6 +33,8 @@ class App extends Component {
                     <Switch>
                         <PrivateRoute exact path='/accounts' component={AccountsPage}/>
                         <PrivateRoute exact path='/clients' component={ClientsPage}/>
+                        <PrivateRoute exact path='/clients/create' component={ClientCreate}/>
+                        <PrivateRoute path='/clients/:id' component={ClientDetail}/>
                         <PrivateRoute exact path='/goods' component={GoodsPage}/>
                         <PrivateRoute exact path='/' component={HomePage}/>
                         <PrivateRoute exact path='/orders' component={Orders}/>

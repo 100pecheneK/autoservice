@@ -6,3 +6,8 @@ html, body {
 .pusher {
     margin-right: 150px;
 }
+
+.tr-action:hover {
+    cursor: pointer;
+    font-weight: bold;
+}

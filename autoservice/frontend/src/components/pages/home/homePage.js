@@ -5,6 +5,7 @@ import Header from "../../header"
 
 
 class HomePage extends Component {
+
     render() {
         return (
             <MainContainer>
