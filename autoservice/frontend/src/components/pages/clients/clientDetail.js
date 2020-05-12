@@ -16,19 +16,18 @@ class ClientDetail extends Component {
 
     render() {
         return (
-            <MainContainer>
+            <>
                 <Header title={'Клиент'} to={'/clients'} create={false}/>
                 <ClientForm
                     initialValues={this.props.client}
                     enableReinitialize={true}
                     onSubmit={this.onSubmit}/>
-            </MainContainer>
+            </>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(ownProps)
     return ({
         client: state.clients[ownProps.match.params.id]
     })

@@ -3,11 +3,13 @@ import {reducer as formReducer} from 'redux-form'
 
 import auth from "./auth"
 import clients from "./clients"
+import accounts from "./accounts"
 import {LOGOUT_SUCCESS} from "../actions/types"
 
 const appReducer = combineReducers({
     form: formReducer,
     auth,
+    accounts,
     clients
 })
 

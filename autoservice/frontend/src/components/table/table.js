@@ -1,9 +1,11 @@
 import {Button, Icon, Menu, Table} from "semantic-ui-react"
 import React from "react"
+import copyArray from "lodash-es/_copyArray"
 
 const TableExample = ({fields, data, rowClickHandler, deleteHandler}) => {
-
-    const items = data.reverse().map(item => {
+    const newData = copyArray(data)
+    const items = newData.reverse().map(item => {
+        console.log(item)
         const row_data = Object.entries(item)
 
         const row = row_data.map((field, i) => {
@@ -43,7 +45,7 @@ const TableExample = ({fields, data, rowClickHandler, deleteHandler}) => {
             </Table.Body>
             <Table.Footer fullWidth>
                 <Table.Row>
-                    <Table.HeaderCell colSpan='4'>
+                    <Table.HeaderCell colSpan='12'>
                         <Menu floated='right' pagination>
                             <Menu.Item as='a' icon>
                                 <Icon name='chevron left'/>

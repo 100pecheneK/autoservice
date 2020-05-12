@@ -1,9 +1,10 @@
 import React from "react"
+import {Segment} from "semantic-ui-react"
 
 const Form = ({initialValues, handleSubmit, onSubmit, children}) => {
     const btnText = `${initialValues ? 'Обновить' : 'Создать'}`
     return (
-        <div className='ui segment'>
+        <Segment>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className='ui form error'
@@ -11,7 +12,7 @@ const Form = ({initialValues, handleSubmit, onSubmit, children}) => {
                 {children}
                 <button className='ui primary button'>{btnText}</button>
             </form>
-        </div>
+        </Segment>
     )
 }
 

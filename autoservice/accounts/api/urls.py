@@ -1,14 +1,16 @@
 from django.urls import path, include
-
-
 from knox.views import LogoutView
-
-from .views import UserAPIView, LoginAPIView
+from accounts.api.views import UserAPIView, LoginAPIView
+from rest_framework import routers
+from accounts.api.views import AccountsAPIViewSet
 
 urlpatterns = [
-    path('', include('knox.urls')),
-    path('user', UserAPIView.as_view()),
-    # path('register', RegisterAPIView.as_view()),
-    path('login', LoginAPIView.as_view()),
-    path('logout', LogoutView.as_view(), name='knox_logout')
+    path('auth/', include('knox.urls')),
+    path('auth/user', UserAPIView.as_view()),
+    path('auth/login', LoginAPIView.as_view()),
+    path('auth/logout', LogoutView.as_view(), name='knox_logout')
 ]
+router = routers.DefaultRouter()
+router.register('', AccountsAPIViewSet, 'accounts')
+
+urlpatterns += router.urls

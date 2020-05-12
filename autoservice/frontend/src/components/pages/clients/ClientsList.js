@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import {deleteClient, getClients} from "../../../actions/clients"
 import history from "../../../history"
 import TableExample from "../../table/table"
-import {makeMeFio} from "../../../utils"
+import Header from "../../header"
 
 class ClientsList extends Component {
     componentDidMount() {
@@ -14,15 +14,18 @@ class ClientsList extends Component {
     deleteHandler = id => this.props.deleteClient(id)
 
     render() {
-        const clients = makeMeFio(this.props.clients)
-        const fields = ['id', 'ФИО', 'Номер телефона']
+        const clients = this.props.clients
+        const fields = ['id', 'И', 'Ф', 'О', 'Номер телефона']
         return (
-            <TableExample
-                fields={fields}
-                data={clients}
-                rowClickHandler={this.rowClickHandler}
-                deleteHandler={this.deleteHandler}
-            />
+            <>
+                <Header title={'Клиенты'} to={'/clients/create'}/>
+                <TableExample
+                    fields={fields}
+                    data={clients}
+                    rowClickHandler={this.rowClickHandler}
+                    deleteHandler={this.deleteHandler}
+                />
+            </>
         )
     }
 }

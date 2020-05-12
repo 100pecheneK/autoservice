@@ -1,11 +1,17 @@
 import copyArray from "lodash-es/_copyArray"
 
+
 export default function makeMeFio(data) {
-    const newData = copyArray(data)
-    return newData.map(client => {
+    console.log('data', data)
+    const newData = copyArray(data).map(client => {
+        const fio = client.first_name &&
+            client.last_name &&
+            client.generic_name &&
+            `${client.first_name} ${client.last_name} ${client.generic_name}`
+
         const c = {
             id: client.id,
-            fio: `${client.first_name} ${client.last_name} ${client.generic_name}`,
+            fio: fio,
         }
         delete client['first_name']
         delete client['last_name']
@@ -15,4 +21,6 @@ export default function makeMeFio(data) {
             ...client
         }
     })
+    console.log('newData', newData)
+    return newData
 }
