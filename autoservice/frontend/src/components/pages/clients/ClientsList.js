@@ -4,6 +4,7 @@ import {deleteClient, getClients} from "../../../actions/clients"
 import history from "../../../history"
 import TableExample from "../../table/table"
 import Header from "../../header"
+import {makeMeFio} from "../../../utils"
 
 class ClientsList extends Component {
     componentDidMount() {
@@ -14,8 +15,8 @@ class ClientsList extends Component {
     deleteHandler = id => this.props.deleteClient(id)
 
     render() {
-        const clients = this.props.clients
-        const fields = ['id', 'И', 'Ф', 'О', 'Номер телефона']
+        const clients = makeMeFio(this.props.clients)
+        const fields = ['id', 'ФИО', 'Номер телефона']
         return (
             <>
                 <Header title={'Клиенты'} to={'/clients/create'}/>
