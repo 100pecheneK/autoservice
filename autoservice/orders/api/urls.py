@@ -1,8 +1,8 @@
 from rest_framework import routers
 from django.urls import path
 
-from .views import ClientsAPIViewSet
+from .views import OrdersAPIViewSet
 
 router = routers.DefaultRouter()
-router.register('', ClientsAPIViewSet, 'clients')
+router.register('', OrdersAPIViewSet, 'orders')
 urlpatterns = router.urls

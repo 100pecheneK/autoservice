@@ -8,5 +8,6 @@ urlpatterns = [
     path('api/auth/', include('accounts.api.urls')),
     path('api/clients/', include('clients.api.urls')),
     path('api/accounts/', include('accounts.api.urls')),
+    path('api/orders/', include('orders.api.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
