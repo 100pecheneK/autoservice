@@ -37,6 +37,7 @@ export const deleteAccount = id => async (dispatch, getState) => {
 }
 
 export const addAccount = formValues => async (dispatch, getState) => {
+    console.log(formValues)
     const res = await axios.post(
         '/api/accounts/',
         {...formValues},

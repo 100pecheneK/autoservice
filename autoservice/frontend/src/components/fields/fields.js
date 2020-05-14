@@ -1,6 +1,6 @@
 import InputMask from 'react-input-mask'
 import React from "react"
-import Form from "../form/Form";
+import Form from "../form/Form"
 
 export const phoneNumberField = ({input, label, meta: {touched, error}}) => (
     <div className={`field ${touched && error ? 'error' : ''}`}>
@@ -30,17 +30,28 @@ export const renderField = ({input, label, meta: {touched, error}}) => (
         )}
     </div>
 )
+export const renderEmailField = ({input, label, meta: {touched, error}}) => (
+    <div className={`field ${touched && error ? 'error' : ''}`}>
+        <label>{label}</label>
+        <input {...input} onKeyPress={e => {
+            if (e.key.match(/[^a-z0-9@.]/ig)) {
+                e.preventDefault()
+            }
+        }} autoComplete='off'/>
+        {touched && error && (
+            <span className='ui pointing red basic label'>{error}</span>
+        )}
+    </div>
+)
 
-export const renderSelect = ({input, label, meta: {touched, error}, options} ) => {
+export const renderSelect = ({input, label, meta: {touched, error}, options}) => {
     return (
         <div className={`field ${touched && error ? 'error' : ''}`}>
             <label>{label}</label>
-            <select {...input}>
-                <option value={null} key={0}>
-                </option>
-
-                {options.map(({id, value, title}) => (
-                    <option value={value} key={id}>
+            <select className='ui fluid dropdown' {...input}>
+                <option/>
+                {options.map(({key, value, title}, i) => (
+                    <option value={value} key={i}>
                         {title}
                     </option>
                 ))}

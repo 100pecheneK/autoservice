@@ -1,49 +1,44 @@
 import React, {Component} from 'react'
 import {Field, reduxForm} from 'redux-form'
-import {hiddenField, phoneNumberField, renderField, renderSelect} from "../../fields/fields"
+import {hiddenField, phoneNumberField, renderEmailField, renderField, renderSelect} from "../../fields/fields"
 import Form from "../../form/Form"
 
 
 class AccountForm extends Component {
 
-    onSubmit = (values, dispatch, props) => {
-        this.props.onSubmit(values)
+    onSubmit = formValues => {
+        this.props.onSubmit(formValues)
     }
 
     render() {
+        const {edit} = this.props
         const options = [
             {
-                id:1,
-                value: 'Админ',
-                title:'Админ'
-            },
-            {
-                id:2,
                 value: 'Сотрудник',
                 title: 'Сотрудник'
+            },
+            {
+                value: 'Админ',
+                title: 'Админ'
             }
         ]
-
-        const {edit} = this.props
 
         return (
             <Form
                 initialValues={this.props.initialValues}
                 handleSubmit={this.props.handleSubmit}
-                onSubmit= {this.onSubmit}
+                onSubmit={this.onSubmit}
             >
                 <Field name='first_name' component={renderField} label='Имя'/>
                 <Field name='last_name' component={renderField} label='Фамилия'/>
                 <Field name='generic_name' component={renderField} label='Отчество'/>
                 <Field name='phone_number' component={phoneNumberField} label='Номер телефона'/>
                 <Field name='username' component={renderField} label='Логин'/>
-                <Field name='email' component={renderField} label='Почта'/>
-                { !edit &&
-                    <Field name='password' component={renderField} label='Пароль'/>
+                <Field name='email' component={renderEmailField} label='Почта'/>
+                {!edit &&
+                <Field name='password' component={renderField} label='Пароль'/>
                 }
                 <Field name='status' component={renderSelect} label='Статус' options={options}/>
-
-
                 <Field
                     name='non_field_errors'
                     type='hidden'
@@ -62,9 +57,7 @@ const validate = formValues => {
         'last_name',
         'generic_name',
         'phone_number',
-        'username',
-        'email',
-        'password',
+        'username'
     ]
 
     fields.forEach(field => {
@@ -72,9 +65,20 @@ const validate = formValues => {
             errors[field] = errorMsg
         }
     })
-    if(!formValues.status){
-            errors.status = 'Выберите статус пользователя'
+    if (!formValues.status) {
+        errors.status = 'Выберите статус пользователя'
     }
+    if (!formValues.email) {
+        errors.email = 'Это поле обязательно'
+    } else if (!formValues.email.match(/[^a-z0-9@.]/ig)) {
+        errors.email = 'Введите корректый email'
+    }
+    if (!formValues.password) {
+        errors.password = 'Это поле обязателньо'
+    } else if (formValues.password.length < 4) {
+        errors.password = 'Не меньше 4 символов'
+    }
+
     return errors
 }
 
