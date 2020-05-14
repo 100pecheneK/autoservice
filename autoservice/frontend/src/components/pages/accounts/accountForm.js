@@ -34,7 +34,7 @@ class AccountForm extends Component {
                 <Field name='generic_name' component={renderField} label='Отчество'/>
                 <Field name='phone_number' component={phoneNumberField} label='Номер телефона'/>
                 <Field name='username' component={renderField} label='Логин'/>
-                <Field name='email' component={renderEmailField} label='Почта'/>
+                <Field name='email' type={'email'} required component={renderEmailField} label='Почта'/>
                 {!edit &&
                 <Field name='password' component={renderField} label='Пароль'/>
                 }
@@ -57,7 +57,8 @@ const validate = formValues => {
         'last_name',
         'generic_name',
         'phone_number',
-        'username'
+        'username',
+        'email'
     ]
 
     fields.forEach(field => {
@@ -67,11 +68,6 @@ const validate = formValues => {
     })
     if (!formValues.status) {
         errors.status = 'Выберите статус пользователя'
-    }
-    if (!formValues.email) {
-        errors.email = 'Это поле обязательно'
-    } else if (!formValues.email.match(/[^a-z0-9@.]/ig)) {
-        errors.email = 'Введите корректый email'
     }
     if (!formValues.password) {
         errors.password = 'Это поле обязателньо'

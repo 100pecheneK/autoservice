@@ -40,7 +40,6 @@ const validate = formValues => {
         'generic_name',
         'phone_number'
     ]
-
     fields.forEach(field => {
         if (!formValues[field]) {
             errors[field] = errorMsg

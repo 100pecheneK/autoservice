@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {reset} from 'redux-form'
+import {reset, stopSubmit} from 'redux-form'
 import history from '../history'
 
 
@@ -10,7 +10,7 @@ import {
     UPDATE_ACCOUNT,
     ADD_ACCOUNT,
 } from "./types"
-import { tokenConfig } from "./auth"
+import {tokenConfig} from "./auth"
 
 export const getAccounts = () => async (dispatch, getState) => {
     const res = await axios.get('/api/accounts/', tokenConfig(getState))
@@ -37,29 +37,37 @@ export const deleteAccount = id => async (dispatch, getState) => {
 }
 
 export const addAccount = formValues => async (dispatch, getState) => {
-    console.log(formValues)
-    const res = await axios.post(
-        '/api/accounts/',
-        {...formValues},
-        tokenConfig(getState)
-    )
-    dispatch({
-        type: ADD_ACCOUNT,
-        payload: res.data
-    })
-    dispatch(reset('accountForm'))
-    history.push('/accounts')
+    try {
+        const res = await axios.post(
+            '/api/accounts/',
+            {...formValues},
+            tokenConfig(getState)
+        )
+        dispatch({
+            type: ADD_ACCOUNT,
+            payload: res.data
+        })
+        dispatch(reset('accountForm'))
+        history.push('/accounts')
+    } catch (err) {
+        dispatch(stopSubmit('accountForm', err.response.data))
+    }
+
 }
 
 export const editAccount = (id, formValues) => async (dispatch, getState) => {
-    const res = await axios.patch(
-        `/api/accounts/${id}/`,
-        formValues,
-        tokenConfig(getState)
-    )
-    dispatch({
-        type: UPDATE_ACCOUNT,
-        payload: res.data
-    })
-    history.push('/accounts')
+    try {
+        const res = await axios.patch(
+            `/api/accounts/${id}/`,
+            formValues,
+            tokenConfig(getState)
+        )
+        dispatch({
+            type: UPDATE_ACCOUNT,
+            payload: res.data
+        })
+        history.push('/accounts')
+    } catch (err) {
+        dispatch(stopSubmit('accountForm', err.response.data))
+    }
 }

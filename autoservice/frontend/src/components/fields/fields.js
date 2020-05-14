@@ -30,10 +30,10 @@ export const renderField = ({input, label, meta: {touched, error}}) => (
         )}
     </div>
 )
-export const renderEmailField = ({input, label, meta: {touched, error}}) => (
+export const renderEmailField = ({input, type, label, meta: {touched, error}}) => (
     <div className={`field ${touched && error ? 'error' : ''}`}>
         <label>{label}</label>
-        <input {...input} onKeyPress={e => {
+        <input {...input} type={type} onKeyPress={e => {
             if (e.key.match(/[^a-z0-9@.]/ig)) {
                 e.preventDefault()
             }
