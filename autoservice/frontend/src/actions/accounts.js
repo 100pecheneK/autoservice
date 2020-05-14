@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {reset} from 'redux-form'
+import history from '../history'
 
 
 import {
@@ -32,4 +34,31 @@ export const deleteAccount = id => async (dispatch, getState) => {
         type: DELETE_ACCOUNT,
         payload: id
     })
+}
+
+export const addAccount = formValues => async (dispatch, getState) => {
+    const res = await axios.post(
+        '/api/accounts/',
+        {...formValues},
+        tokenConfig(getState)
+    )
+    dispatch({
+        type: ADD_ACCOUNT,
+        payload: res.data
+    })
+    dispatch(reset('accountForm'))
+    history.push('/accounts')
+}
+
+export const editAccount = (id, formValues) => async (dispatch, getState) => {
+    const res = await axios.patch(
+        `/api/accounts/${id}/`,
+        formValues,
+        tokenConfig(getState)
+    )
+    dispatch({
+        type: UPDATE_ACCOUNT,
+        payload: res.data
+    })
+    history.push('/accounts')
 }

@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from knox.models import AuthToken
 from django.contrib.auth import get_user_model
 
-from .serializers import UserSerializer, LoginSerializer, AccountAPISerializer
+from .serializers import UserSerializer, LoginSerializer, AccountAPISerializer, RegisterSerializer
 from .permissions import IsSuperUser
 
 User = get_user_model()
@@ -30,17 +30,17 @@ class AccountsAPIViewSet(ModelViewSet):
 
 
 # TODO: В будущих карточках будет регистрация
-# class RegisterAPIView(GenericAPIView):
-#     serializer_class = RegisterSerializer
-#
-#     def post(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         user = serializer.save()
-#         return Response({
-#             "user": UserSerializer(user, context=self.get_serializer_context()).data,
-#             "token": AuthToken.objects.create(user)[1]
-#         })
+class RegisterAPIView(GenericAPIView):
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
 
 
 class LoginAPIView(GenericAPIView):

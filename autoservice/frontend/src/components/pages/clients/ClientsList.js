@@ -30,11 +30,11 @@ class ClientsList extends Component {
     }
 }
 
-const mapStatetoProps = state => ({
+const mapStateToProps = state => ({
     clients: Object.values(state.clients)
 })
 
 export default connect(
-    mapStatetoProps,
+    mapStateToProps,
     {getClients, deleteClient}
 )(ClientsList)

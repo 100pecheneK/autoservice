@@ -5,7 +5,7 @@ import copyArray from "lodash-es/_copyArray"
 const TableExample = ({fields, data, rowClickHandler, deleteHandler}) => {
     const newData = copyArray(data)
     const items = newData.reverse().map(item => {
-        console.log(item)
+        // console.log(item)
         const row_data = Object.entries(item)
 
         const row = row_data.map((field, i) => {
