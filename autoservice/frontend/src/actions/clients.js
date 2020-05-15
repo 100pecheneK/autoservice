@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {reset} from 'redux-form'
+import {reset, stopSubmit} from 'redux-form'
 import history from '../history'
 import {tokenConfig} from './auth'
 import {
@@ -27,18 +27,23 @@ export const getClient = id => async (dispatch, getState) => {
 }
 
 export const addClient = formValues => async (dispatch, getState) => {
-    const res = await axios.post(
-        '/api/clients/',
-        {...formValues},
-        tokenConfig(getState)
-    )
-    dispatch({
-        type: ADD_CLIENT,
-        payload: res.data
-    })
-    dispatch(reset('clientForm'))
-    history.push('/clients')
+    try {
+        const res = await axios.post(
+            '/api/clients/',
+            {...formValues},
+            tokenConfig(getState)
+        )
+        dispatch({
+            type: ADD_CLIENT,
+            payload: res.data
+        })
+        dispatch(reset('clientForm'))
+        history.push('/clients')
+    } catch (err) {
+        dispatch(stopSubmit('clientForm', err.response.data))
+    }
 }
+
 
 export const deleteClient = id => async (dispatch, getState) => {
     await axios.delete(`/api/clients/${id}/`, tokenConfig(getState))
@@ -49,14 +54,18 @@ export const deleteClient = id => async (dispatch, getState) => {
 }
 
 export const editClient = (id, formValues) => async (dispatch, getState) => {
-    const res = await axios.patch(
-        `/api/clients/${id}/`,
-        formValues,
-        tokenConfig(getState)
-    )
-    dispatch({
-        type: EDIT_CLIENT,
-        payload: res.data
-    })
-    history.push('/clients')
+    try {
+        const res = await axios.patch(
+            `/api/clients/${id}/`,
+            formValues,
+            tokenConfig(getState)
+        )
+        dispatch({
+            type: EDIT_CLIENT,
+            payload: res.data
+        })
+        history.push('/clients')
+    } catch (err) {
+        dispatch(stopSubmit('clientForm', err.response.data))
+    }
 }

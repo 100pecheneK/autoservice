@@ -1,13 +1,22 @@
-import {Button, Icon, Menu, Table} from "semantic-ui-react"
+import {Button, Icon, Label, Menu, Table} from "semantic-ui-react"
 import React from "react"
 import copyArray from "lodash-es/_copyArray"
 
-const TableExample = ({fields, data, rowClickHandler, deleteHandler}) => {
+const TableExample = ({fields, data, userId = null, rowClickHandler, deleteHandler}) => {
     const newData = copyArray(data)
     const items = newData.reverse().map(item => {
         const row_data = Object.entries(item)
-        const row = row_data.map((field, i) => {
-            const key = Number(`${row_data[0][1]}.${i}`)
+
+
+        const row = row_data.map((field, j) => {
+            const key = Number(`${row_data[0][1]}.${j}`)
+
+            if (j === 0 && field[1] === userId){
+                return (
+                    <Table.Cell key={key}><Label ribbon>{field[1]}</Label></Table.Cell>
+                )
+            }
+
             return (
                 <Table.Cell key={key}>{field[1]}</Table.Cell>
             )

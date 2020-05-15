@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
+
+import {Switch} from 'react-router-dom'
+import PrivateRoute from "../../common/PrivateRoute"
 
 import MainContainer from '../../mainContainer'
 import AccountDetail from "./accountDetail"
+import AccountCreate from "./accountCreate"
 import AccountsList from "./accountsList"
-import Header from "../../header"
-import PrivateRoute from "../../common/PrivateRoute"
+
+
 
 
 class AccountsPage extends Component {
@@ -14,6 +17,7 @@ class AccountsPage extends Component {
             <MainContainer>
                 <Switch>
                     <PrivateRoute exact path='/accounts' component={AccountsList}/>
+                    <PrivateRoute exact path='/accounts/create' component={AccountCreate}/>
                     <PrivateRoute path='/accounts/:id' component={AccountDetail}/>
                 </Switch>
             </MainContainer>
