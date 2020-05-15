@@ -7,6 +7,7 @@ const TableExample = ({fields, data, userId = null, rowClickHandler, deleteHandl
     const items = newData.reverse().map(item => {
         const row_data = Object.entries(item)
 
+
         const row = row_data.map((field, j) => {
             const key = Number(`${row_data[0][1]}.${j}`)
 
@@ -15,6 +16,7 @@ const TableExample = ({fields, data, userId = null, rowClickHandler, deleteHandl
                     <Table.Cell key={key}><Label ribbon>{field[1]}</Label></Table.Cell>
                 )
             }
+
             return (
                 <Table.Cell key={key}>{field[1]}</Table.Cell>
             )
