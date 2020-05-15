@@ -16,8 +16,8 @@ class AccountsTable extends Component {
     deleteHandler = id => this.props.deleteAccount(id)
 
     render() {
-        const accounts = this.props.accounts
-        const fields = ['id', 'И', 'Ф', 'О', 'Логин', 'Email', 'Телефон', 'Статус']
+        const accounts = makeMeFio(this.props.accounts)
+        const fields = ['id', 'ФИО', 'Логин', 'Email', 'Телефон', 'Статус']
         return (
             <>
                 <Header title={'Аккаунты'} to={'/accounts/create'}/>
