@@ -29,6 +29,36 @@ export const renderField = ({input, label, meta: {touched, error}}) => (
         )}
     </div>
 )
+export const renderEmailField = ({input, type, label, meta: {touched, error}}) => (
+    <div className={`field ${touched && error ? 'error' : ''}`}>
+        <label>{label}</label>
+        <input {...input} type={type} onKeyPress={e => {
+            if (e.key.match(/[^a-z0-9@.]/ig)) {
+                e.preventDefault()
+            }
+        }} autoComplete='off'/>
+        {touched && error && (
+            <span className='ui pointing red basic label'>{error}</span>
+        )}
+    </div>
+)
 
-
+export const renderSelect = ({input, label, meta: {touched, error}, options}) => {
+    return (
+        <div className={`field ${touched && error ? 'error' : ''}`}>
+            <label>{label}</label>
+            <select className='ui fluid dropdown' {...input}>
+                <option/>
+                {options.map(({key, value, title}, i) => (
+                    <option value={value} key={i}>
+                        {title}
+                    </option>
+                ))}
+            </select>
+            {touched && error && (
+                <span className='ui pointing red basic label'>{error}</span>
+            )}
+        </div>
+    )
+}
 

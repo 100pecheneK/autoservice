@@ -22,6 +22,7 @@ class AccountsTable extends Component {
             <>
                 <Header title={'Аккаунты'} to={'/accounts/create'}/>
                 <TableExample
+                    userId={this.props.userId}
                     fields={fields}
                     data={accounts}
                     rowClickHandler={this.rowClickHandler}
@@ -33,10 +34,13 @@ class AccountsTable extends Component {
 }
 
 const mapStateToProps = state => {
-    // console.log(Object.values(state.accountReducer))
-    return {
-        accounts: Object.values(state.accounts)
+    const stateToProps = {
+        accounts: Object.values(state.accounts),
     }
+    if (state.auth.user){
+        stateToProps.userId = state.auth.user.id
+    }
+    return stateToProps
 }
 
 

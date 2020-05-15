@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Field, reduxForm} from 'redux-form'
 import {hiddenField, phoneNumberField, renderField} from "../../fields/fields"
 import Form from "../../form/Form"
+import {validators} from "../../../utils"
 
 
 class ClientForm extends Component {
@@ -32,22 +33,13 @@ class ClientForm extends Component {
 }
 
 const validate = formValues => {
-    const errors = {}
-    const errorMsg = 'Не менее 1 символа'
     const fields = [
         'first_name',
         'last_name',
         'generic_name',
         'phone_number'
     ]
-
-    fields.forEach(field => {
-        if (!formValues[field]) {
-            errors[field] = errorMsg
-        }
-    })
-
-    return errors
+    return validators(formValues, fields)
 }
 
 export default reduxForm({
