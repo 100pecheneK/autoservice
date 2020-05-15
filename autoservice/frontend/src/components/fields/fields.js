@@ -1,6 +1,5 @@
 import InputMask from 'react-input-mask'
 import React from "react"
-import Form from "../form/Form"
 
 export const phoneNumberField = ({input, label, meta: {touched, error}}) => (
     <div className={`field ${touched && error ? 'error' : ''}`}>

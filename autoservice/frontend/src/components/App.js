@@ -6,7 +6,6 @@ import history from '../history'
 import {Provider} from 'react-redux'
 import store from '../store'
 import PrivateRoute from "./common/PrivateRoute"
-
 import {loadUser} from "../actions/auth"
 import './app.css'
 import {
@@ -42,9 +41,9 @@ class App extends Component {
     }
 }
 
-const styleLink = document.createElement("link")
-styleLink.rel = "stylesheet"
-styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
-document.head.appendChild(styleLink)
+// const styleLink = document.createElement("link")
+// styleLink.rel = "stylesheet"
+// styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
+// document.head.appendChild(styleLink)
 
 ReactDOM.render(<App/>, document.querySelector('#app'))

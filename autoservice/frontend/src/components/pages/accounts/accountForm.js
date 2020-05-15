@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Field, reduxForm} from 'redux-form'
 import {hiddenField, phoneNumberField, renderEmailField, renderField, renderSelect} from "../../fields/fields"
 import Form from "../../form/Form"
+import {validators} from "../../../utils"
 
 
 class AccountForm extends Component {
@@ -50,32 +51,17 @@ class AccountForm extends Component {
 }
 
 const validate = formValues => {
-    const errors = {}
-    const errorMsg = 'Не менее 1 символа'
     const fields = [
         'first_name',
         'last_name',
         'generic_name',
-        'phone_number',
         'username',
-        'email'
+        'email',
+        'status',
+        'phone_number',
+        'password'
     ]
-
-    fields.forEach(field => {
-        if (!formValues[field]) {
-            errors[field] = errorMsg
-        }
-    })
-    if (!formValues.status) {
-        errors.status = 'Выберите статус пользователя'
-    }
-    if (!formValues.password) {
-        errors.password = 'Это поле обязателньо'
-    } else if (formValues.password.length < 4) {
-        errors.password = 'Не меньше 4 символов'
-    }
-
-    return errors
+    return validators(formValues, fields)
 }
 
 export default reduxForm({
