@@ -8,10 +8,10 @@ import {login} from '../../actions/auth'
 import {Button, Form, Grid, Header, Image, Message, Segment} from 'semantic-ui-react'
 
 class LoginForm extends Component {
-    renderField = ({input, label, type, meta: {touched, error}}) => {
+    renderField = ({input, label, type, meta: {touched, error}, icon}) => {
         return (
             <div className={`field ${touched && error ? 'error' : ''}`}>
-                <Form.Input fluid type={type} icon='user' iconPosition='left' placeholder={label} {...input}/>
+                <Form.Input fluid type={type} icon={icon} iconPosition='left' placeholder={label} {...input}/>
                 {touched && error && (
                     <span className='ui pointing red basic label'>{error}</span>
                 )}
@@ -47,12 +47,14 @@ class LoginForm extends Component {
                             <Field
                                 name='username'
                                 type='text'
+                                icon='user'
                                 component={this.renderField}
                                 label='Логин'
                             />
                             <Field
                                 name='password'
                                 type='password'
+                                icon='lock'
                                 component={this.renderField}
                                 label='Пароль'
                             />
