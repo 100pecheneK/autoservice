@@ -30,7 +30,7 @@ class App extends Component {
                     <Switch>
                         <PrivateRoute admin path='/accounts' component={AccountsPage}/>
                         <PrivateRoute path='/clients' component={ClientsPage}/>
-                        <PrivateRoute exact path='/goods' component={GoodsPage}/>
+                        <PrivateRoute path='/goods' component={GoodsPage}/>
                         <PrivateRoute exact path='/' component={HomePage}/>
                         <PrivateRoute exact path='/orders' component={Orders}/>
                         <Route exact path='/login' component={LoginForm}/>
