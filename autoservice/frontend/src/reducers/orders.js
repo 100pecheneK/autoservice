@@ -23,7 +23,7 @@ export default (state = {}, action) => {
                 [action.payload.id]: action.payload
             }
         case DELETE_ORDER:
-            return _.omit(state.list, action.payload)
+            return _.omit(state, action.payload)
         default:
             return state
     }
