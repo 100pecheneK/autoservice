@@ -38,7 +38,7 @@ class OrdersAPIViewSet(ModelViewSet):
         return Response(serializer.data)
 
     def list(self, request, *args, **kwargs):
-        queryset = Orders.objects.all()
+        queryset = self.get_queryset()
         serializer = OrdersListSerializer(queryset, many=True)
         return Response(serializer.data)
 
