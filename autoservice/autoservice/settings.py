@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'frontend.apps.FrontendConfig',
     'accounts.apps.AccountsConfig',
     'clients.apps.ClientsConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [

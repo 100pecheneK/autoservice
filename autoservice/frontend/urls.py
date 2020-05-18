@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index, ClientDetailView, AccountDetailView
+from .views import index, ClientDetailView, AccountDetailView, OrderDetailView
 
 urlpatterns = [
     path('', index),
@@ -13,4 +13,6 @@ urlpatterns = [
     path('clients/<int:pk>', ClientDetailView.as_view()),
     path('goods/', index),
     path('orders/', index),
+    path('orders/create', index),
+    path('orders/<int:pk>', OrderDetailView.as_view()),
 ]
