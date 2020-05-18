@@ -9,9 +9,6 @@ export default function validators(formValues, fields) {
                 }
                 break
             case 'phone_number':
-                if (formValues.phone_number) {
-                    console.log(formValues.phone_number.match(/_/ig))
-                }
                 if (!formValues.phone_number) {
                     errors.phone_number = 'Это поле обязательно'
                 } else if (formValues.phone_number.match(/_/ig)) {

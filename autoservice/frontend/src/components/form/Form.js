@@ -1,8 +1,8 @@
 import React from "react"
 import {Segment} from "semantic-ui-react"
 
-const Form = ({initialValues, handleSubmit, onSubmit, children}) => {
-    const btnText = `${initialValues ? 'Обновить' : 'Создать'}`
+const Form = ({initialValues, performCreate = false, handleSubmit, onSubmit, children}) => {
+    const btnText = `${initialValues && !performCreate ? 'Обновить' : 'Создать'}`
     return (
         <Segment>
             <form

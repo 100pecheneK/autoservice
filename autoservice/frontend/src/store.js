@@ -4,14 +4,14 @@ import reduxThunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 
-const logMiddleware = ({getState, dispatch}) => (next) => (action) => {
-    console.log(`${action.type}`, getState())
-    return next(action)
-}
+// const logMiddleware = ({getState, dispatch}) => (next) => (action) => {
+//     console.log(`${action.type}`, getState())
+//     return next(action)
+// }
 
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(reduxThunk, logMiddleware))
+    composeWithDevTools(applyMiddleware(reduxThunk))
 );
 
 export default store;

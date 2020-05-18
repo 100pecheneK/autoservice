@@ -14,7 +14,10 @@ class ClientCreate extends Component {
         return (
             <>
                 <Header title={'Создание клиента'} to={'/clients'} create={false}/>
-                <ClientForm destroyOnUnmount={false} onSubmit={this.onSubmit}/>
+                <ClientForm
+                    destroyOnUnmount={false}
+                    onSubmit={this.onSubmit}
+                />
             </>
         )
     }

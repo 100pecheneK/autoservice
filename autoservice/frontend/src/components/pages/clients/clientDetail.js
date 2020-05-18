@@ -27,11 +27,9 @@ class ClientDetail extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return ({
-        client: state.clients[ownProps.match.params.id]
-    })
-}
+const mapStateToProps = (state, ownProps) => ({
+    client: state.clients[ownProps.match.params.id]
+})
 
 export default connect(
     mapStateToProps,
