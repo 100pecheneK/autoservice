@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import {registerLocale} from "react-datepicker"
+import ru from 'date-fns/locale/ru'
 import {Router, Route, Switch} from 'react-router-dom'
 import LoginForm from "./auth"
 import history from '../history'
@@ -13,7 +15,7 @@ import {
     ClientsPage,
     GoodsPage,
     HomePage,
-    Orders,
+    OrdersPage,
 } from './pages'
 
 
@@ -30,9 +32,9 @@ class App extends Component {
                     <Switch>
                         <PrivateRoute admin path='/accounts' component={AccountsPage}/>
                         <PrivateRoute path='/clients' component={ClientsPage}/>
-                        <PrivateRoute exact path='/goods' component={GoodsPage}/>
+                        <PrivateRoute path='/orders' component={OrdersPage}/>
+                        <PrivateRoute path='/goods' component={GoodsPage}/>
                         <PrivateRoute exact path='/' component={HomePage}/>
-                        <PrivateRoute exact path='/orders' component={Orders}/>
                         <Route exact path='/login' component={LoginForm}/>
                     </Switch>
                 </Router>
@@ -41,9 +43,6 @@ class App extends Component {
     }
 }
 
-// const styleLink = document.createElement("link")
-// styleLink.rel = "stylesheet"
-// styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
-// document.head.appendChild(styleLink)
+registerLocale('ru', ru)
 
 ReactDOM.render(<App/>, document.querySelector('#app'))

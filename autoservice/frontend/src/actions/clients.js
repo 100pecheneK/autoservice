@@ -7,7 +7,8 @@ import {
     GET_CLIENT,
     ADD_CLIENT,
     DELETE_CLIENT,
-    EDIT_CLIENT
+    EDIT_CLIENT,
+    GET_CLIENTS_CONTACT
 } from './types'
 
 export const getClients = () => async (dispatch, getState) => {
