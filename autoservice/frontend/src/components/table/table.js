@@ -11,10 +11,12 @@ const TableExample = ({fields, data, userId = null, rowClickHandler, deleteHandl
         const row = row_data.map((field, j) => {
             const key = Number(`${row_data[0][1]}.${j}`)
 
-            if (j === 0 && field[1] === userId){
-                return (
-                    <Table.Cell key={key}><Label ribbon>{field[1]}</Label></Table.Cell>
-                )
+            if (userId) {
+                if (j === 0 && field[1] === userId) {
+                    return (
+                        <Table.Cell key={key}><Label ribbon>{field[1]}</Label></Table.Cell>
+                    )
+                }
             }
 
             return (
