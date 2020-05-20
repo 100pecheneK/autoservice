@@ -1,3 +1,4 @@
+
 import React, {useState} from "react"
 import InputMask from 'react-input-mask'
 import DatePicker from "react-datepicker"
@@ -93,7 +94,7 @@ export const renderSelect = ({input, label, meta: {touched, error}, options}) =>
     )
 }
 
-export const renderSearchField = ({options, change}) => {
+export const renderSearchField = ({options, change, placeholder=''}) => {
     const stateOptions = _.map(options.reverse(), (opt, index) => {
         const optionKeys = Object.keys(opt)
         const optionData = {
@@ -107,7 +108,7 @@ export const renderSearchField = ({options, change}) => {
         }
     })
     return (
-        <Dropdown placeholder='Клиент'
+        <Dropdown placeholder={placeholder}
                   onChange={(e, {value})=>change(value)}
                   clearable search selection
                   options={stateOptions}

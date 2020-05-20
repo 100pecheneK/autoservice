@@ -21,6 +21,11 @@ class GoodDetailView(DetailView):
     template_name = 'frontend/index.html'
 
 
+class CategoryDetailView(DetailView):
+    model = Goods
+    template_name = 'frontend/index.html'
+
+
 class ClientDetailView(DetailView):
     model = Clients
     template_name = 'frontend/index.html'
