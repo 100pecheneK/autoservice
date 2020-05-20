@@ -28,10 +28,9 @@ export default (state = initialState, action) => {
                 goods: {..._.mapKeys(action.payload, 'id')}
             }
         case SORT_GOODS:
-            // console.log('asc', action.asc)
             return {
                 ...state,
-                goods:_.orderBy(_.values(state.goods), action.filterValue, action.asc ? 'asc':'desc')
+                goods:_.orderBy(action.payload, action.filterValue, action.asc ? 'asc':'desc')
             }
         case GET_GOOD:
         case ADD_GOOD:

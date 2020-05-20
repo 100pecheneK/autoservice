@@ -14,45 +14,47 @@ const FilterLine = (props) => {
     const [filterValue, setFilterValue] = useState('')
     const [asc, setAsc] = useState(true)
     const [options] = useState([
-            {key: 'price', value: 'price', text: 'Цена'},
-            {key: 'quantity', value: 'quantity', text: 'Количество'},
+            {key: 'p', value: 'sort_price', text: 'Цена'},
+            {key: 'q', value: 'sort_quantity', text: 'Количество'},
         ]
     )
 
-    const changeHandler = (filterValue, asc) => {
+    const changeHandler = (filterValue) => {
         setFilterValue(filterValue)
-        props.sortGoods(filterValue, asc)
     }
 
+    useEffect(() => {
+        props.sortGoods(filterValue, asc)
+    }, [asc, filterValue])
+
     return (
-        <div>
+        <div style={{display:'flex'}}>
             {/*TODO: Не знаю, как вытащить value ||| P.S. с селектом та же шляпа*/}
-            {/*<Dropdown*/}
-            {/*    onChange={(e) => changeHandler(e)}*/}
-            {/*    placeholder='Сортировать по'*/}
-            {/*    selection*/}
-            {/*    value = {filterValue}*/}
-            {/*    options={options}*/}
-            {/*/>*/}
+            <Dropdown
+                onChange={(e, {value})=>changeHandler(value)}
+                placeholder='Сортировать по'
+                selection
+                // value = {filterValue}
+                options={options}
+            />
 
-            <Form>
-                <select name="filter" id="filter" onChange={(e)=>changeHandler(e.target.value, asc)}>
-                    <option/>
-                    {options.map(option => (
-                        <option value={option.value} key={option.key}>{option.text}</option>
-                    ))}
+            {/*<Form>*/}
+            {/*    <select name="filter" id="filter" onChange={(e)=>changeHandler(e.target.value, asc)}>*/}
+            {/*        <option/>*/}
+            {/*        {options.map(option => (*/}
+            {/*            <option value={option.value} key={option.key}>{option.text}</option>*/}
+            {/*        ))}*/}
 
-                </select>
-            </Form>
+            {/*    </select>*/}
+            {/*</Form>*/}
 
-
-            {/*TODO: при выборе опции первые 2 щелчка отправляются с одним значением => это ломает всю фильрацию*/}
             <Button onClick={() => {
-                setAsc(!asc)
-                changeHandler(filterValue, !asc)
+                // console.log('до', asc)
+                setAsc(prevState => !prevState)
+                // console.log('после',asc)
             }}
             >
-                <Icon disabled name={`${asc ? 'sort amount up' : 'sort amount down'}`}/>
+                <Icon disabled name={`sort amount ${asc ? 'up' : 'down'}`}/>
             </Button>
 
         </div>

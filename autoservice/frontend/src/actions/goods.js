@@ -37,21 +37,35 @@ export const getGood = id => async (dispatch, getState) => {
 }
 
 export const searchGoods = query => async (dispatch, getState) => {
-    const q = query ? `?search=${query}` : ''
-
-    const res = await axios.get(`/api/goods/search/${q}`, tokenConfig(getState))
+    let q = ''
+    if (query) {
+        if (query.match(/^\d+$/)) {
+            q = `?id=${query}`
+        } else {
+            q = `?title=${query}`
+        }
+    }
+    const res = await axios.get(`/api/goods/${q}`, tokenConfig(getState))
     dispatch({
         type: SEARCH_GOODS,
         payload: res.data
     })
 }
 
-//TODO:нужен ли тут асинхронный dispatch?
-export const sortGoods = (filterValue, asc) => async dispatch => {
+
+export const sortGoods = (filterValue, asc) => async (dispatch, getState) => {
+    let q = ''
+    if(filterValue){
+        q = `?${filterValue}=${asc?'asc':'desc'}`
+    }
+
+    const res = await axios.get(`/api/goods/${q}`, tokenConfig(getState))
+
     dispatch({
         type: SORT_GOODS,
         filterValue: filterValue,
-        asc: asc
+        asc: asc,
+        payload: res.data
     })
 }
 
@@ -141,7 +155,7 @@ export const deleteCategory = id => async (dispatch, getState) => {
     })
 }
 
-export const editCategory= (id, formValues) => async (dispatch, getState) => {
+export const editCategory = (id, formValues) => async (dispatch, getState) => {
     try {
         const res = await axios.patch(
             `/api/goods/category/${id}/`,
