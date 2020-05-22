@@ -11,20 +11,13 @@ import {
     EDIT_CATEGORIES,
     DELETE_CATEGORIES,
     GET_CATEGORY,
-    SORT_GOODS,
-    ADD_FILTER,
-    CLEAR_FILTER,
-    RESET_FILTERS,
+
 } from '../actions/types'
 
 const initialState = {
     goods: {},
     categories: {},
     activeCategory: {},
-    filters: [
-        {key: 'category', value: '1'},
-        {key: 'sort_price', value: 'acs'},
-    ]
 }
 
 export default (state = initialState, action) => {
@@ -34,11 +27,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 goods: {..._.mapKeys(action.payload, 'id')}
-            }
-        case SORT_GOODS:
-            return {
-                ...state,
-                goods: _.orderBy(action.payload, action.filterValue, action.asc ? 'asc' : 'desc')
             }
         case GET_GOOD:
         case ADD_GOOD:
@@ -54,7 +42,7 @@ export default (state = initialState, action) => {
         case DELETE_GOOD:
             return {
                 ...state,
-                goods: _.omit(state.goods.goods, action.payload)
+                goods: _.omit(state.goods, action.payload)
             }
         case GET_CATEGORIES:
             return {
@@ -76,24 +64,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 categories: _.omit(state.categories, action.payload)
-            }
-        case ADD_FILTER:
-            return {
-                ...state,
-                filters: {
-                    ...state.filters,
-                    [action.payload.key]: action.payload
-                }
-            }
-        case CLEAR_FILTER:
-            return {
-                ...state,
-                filters: _.omit(state.filters, action.payload)
-            }
-        case RESET_FILTERS:
-            return {
-                ...state,
-                filters: {}
             }
         default:
             return state

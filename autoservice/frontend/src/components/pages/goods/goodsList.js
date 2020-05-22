@@ -4,7 +4,6 @@ import {connect} from "react-redux"
 import history from "../../../history"
 import Header from "../../header"
 import TableExample from "../../table/table"
-import {Button, Icon, Dropdown, Form} from "semantic-ui-react"
 import {Field, formValueSelector, reduxForm} from "redux-form"
 import {renderSearchField} from "../../fields/fields"
 
@@ -14,45 +13,10 @@ import {
     addCategory,
     getCategories,
     searchGoods,
-    sortGoods,
     resetFilters, clearFilter, addFilter
 } from "../../../actions/goods"
 
-const FilterLine = (props) => {
-    const [filterValue, setFilterValue] = useState('')
-    const [asc, setAsc] = useState(true)
-    const [options] = useState([
-            {key: 'p', value: 'sort_price', text: 'Цена'},
-            {key: 'q', value: 'sort_quantity', text: 'Количество'},
-        ]
-    )
 
-    const changeHandler = (filterValue) => {
-        setFilterValue(filterValue)
-    }
-
-    useEffect(() => {
-        props.sortGoods(filterValue, asc)
-    }, [asc, filterValue])
-
-    return (
-        <div style={{display: 'flex'}}>
-            <Dropdown
-                onChange={(e, {value}) => changeHandler(value)}
-                placeholder='Сортировать по'
-                selection
-                options={options}
-            />
-            <Button onClick={() => {
-                setAsc(prevState => !prevState)
-            }}
-            >
-                <Icon disabled name={`sort amount ${asc ? 'up' : 'down'}`}/>
-            </Button>
-        </div>
-
-    )
-}
 
 
 const SearchLine = (props) => {
@@ -79,7 +43,7 @@ const SearchLine = (props) => {
     }
     return (
         <div className="ui icon input">
-            <input type="text" placeholder="Поиск по id и названию" value={searchValue}
+            <input type="text" placeholder="id или название" value={searchValue}
                    onChange={e => setSearchValue(e.target.value)}
                    onKeyPress={searchEnterHandler}/>
             <i aria-hidden="true"
@@ -115,13 +79,12 @@ class GoodsList extends Component {
                         title: 'Категории'
                     }}
                 />
-                <div>
+                <div style={{display: 'flex'}}>
                     <Field name='searchQuery' component={renderSearchField}
                            change={this.selectCategoryHandler} label='Категория' placeholder={'Категория'}
                            options={this.props.categories}/>
                     <SearchLine searchGoods={this.props.searchGoods} getGoods={this.selectCategoryHandler}/>
                 </div>
-                <FilterLine sortGoods={this.props.sortGoods}/>
                 <TableExample
                     fields={fields}
                     data={tableData}
@@ -157,7 +120,6 @@ export default connect(mapStateToProps,
         addCategory,
         getCategories,
         searchGoods,
-        sortGoods,
         addFilter,
         clearFilter,
         resetFilters,
