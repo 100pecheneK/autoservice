@@ -14,12 +14,15 @@ import {
     DELETE_CATEGORIES,
     GET_CATEGORY,
     SEARCH_GOODS,
-    SORT_GOODS
+    SORT_GOODS,
+    ADD_FILTER,
+    CLEAR_FILTER,
+    RESET_FILTERS,
 } from './types'
 
-
+// Товары
 export const getGoods = (catId) => async (dispatch, getState) => {
-
+    console.log(getState().goods.filters)
     const q = catId ? `?category=${catId}` : ''
     const res = await axios.get(`/api/goods/${q}`, tokenConfig(getState))
     dispatch({
@@ -55,8 +58,8 @@ export const searchGoods = query => async (dispatch, getState) => {
 
 export const sortGoods = (filterValue, asc) => async (dispatch, getState) => {
     let q = ''
-    if(filterValue){
-        q = `?${filterValue}=${asc?'asc':'desc'}`
+    if (filterValue) {
+        q = `?${filterValue}=${asc ? 'asc' : 'desc'}`
     }
 
     const res = await axios.get(`/api/goods/${q}`, tokenConfig(getState))
@@ -112,7 +115,7 @@ export const editGood = (id, formValues) => async (dispatch, getState) => {
         dispatch(stopSubmit('goodForm', err.response.data))
     }
 }
-
+// Категории
 export const getCategory = id => async (dispatch, getState) => {
     const res = await axios.get(`/api/goods/category/${id}/`, tokenConfig(getState))
     dispatch({
@@ -171,4 +174,24 @@ export const editCategory = (id, formValues) => async (dispatch, getState) => {
     } catch (err) {
         dispatch(stopSubmit('categoryForm', err.response.data))
     }
+}
+// Фильтры
+export const addFilter = filterObj => async dispatch => {
+    dispatch({
+        type: ADD_FILTER,
+        payload: filterObj
+    })
+}
+
+export const clearFilter = filterKey => async dispatch => {
+    dispatch({
+        type: CLEAR_FILTER,
+        payload: filterKey
+    })
+}
+
+export const resetFilters = () => async dispatch => {
+    dispatch({
+        type: RESET_FILTERS
+    })
 }

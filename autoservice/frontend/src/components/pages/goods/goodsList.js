@@ -8,7 +8,15 @@ import {Button, Icon, Dropdown, Form} from "semantic-ui-react"
 import {Field, formValueSelector, reduxForm} from "redux-form"
 import {renderSearchField} from "../../fields/fields"
 
-import {getGoods, deleteGood, addCategory, getCategories, searchGoods, sortGoods} from "../../../actions/goods"
+import {
+    getGoods,
+    deleteGood,
+    addCategory,
+    getCategories,
+    searchGoods,
+    sortGoods,
+    resetFilters, clearFilter, addFilter
+} from "../../../actions/goods"
 
 const FilterLine = (props) => {
     const [filterValue, setFilterValue] = useState('')
@@ -28,35 +36,19 @@ const FilterLine = (props) => {
     }, [asc, filterValue])
 
     return (
-        <div style={{display:'flex'}}>
-            {/*TODO: Не знаю, как вытащить value ||| P.S. с селектом та же шляпа*/}
+        <div style={{display: 'flex'}}>
             <Dropdown
-                onChange={(e, {value})=>changeHandler(value)}
+                onChange={(e, {value}) => changeHandler(value)}
                 placeholder='Сортировать по'
                 selection
-                // value = {filterValue}
                 options={options}
             />
-
-            {/*<Form>*/}
-            {/*    <select name="filter" id="filter" onChange={(e)=>changeHandler(e.target.value, asc)}>*/}
-            {/*        <option/>*/}
-            {/*        {options.map(option => (*/}
-            {/*            <option value={option.value} key={option.key}>{option.text}</option>*/}
-            {/*        ))}*/}
-
-            {/*    </select>*/}
-            {/*</Form>*/}
-
             <Button onClick={() => {
-                // console.log('до', asc)
                 setAsc(prevState => !prevState)
-                // console.log('после',asc)
             }}
             >
                 <Icon disabled name={`sort amount ${asc ? 'up' : 'down'}`}/>
             </Button>
-
         </div>
 
     )
@@ -67,7 +59,6 @@ const SearchLine = (props) => {
     const [searchValue, setSearchValue] = useState('')
 
     useEffect(() => {
-        //TODO: добавить useCallback, если что
         if (!searchValue) {
             props.getGoods()
         }
@@ -112,8 +103,8 @@ class GoodsList extends Component {
 
 
     render() {
+        const tableData = this.props.goods
         const fields = ['id', 'Наименование', 'Описание', 'Количество', 'Цена', 'Категория']
-
         return (
             <>
                 <Header
@@ -128,14 +119,12 @@ class GoodsList extends Component {
                     <Field name='searchQuery' component={renderSearchField}
                            change={this.selectCategoryHandler} label='Категория' placeholder={'Категория'}
                            options={this.props.categories}/>
-
                     <SearchLine searchGoods={this.props.searchGoods} getGoods={this.selectCategoryHandler}/>
-
                 </div>
                 <FilterLine sortGoods={this.props.sortGoods}/>
                 <TableExample
                     fields={fields}
-                    data={this.props.goods}
+                    data={tableData}
                     rowClickHandler={this.rowClickHandler}
                     deleteHandler={this.deleteHandler}
                 />
@@ -161,11 +150,16 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {
-    getGoods,
-    deleteGood,
-    addCategory,
-    getCategories,
-    searchGoods,
-    sortGoods
-})(GoodsList)
+export default connect(mapStateToProps,
+    {
+        getGoods,
+        deleteGood,
+        addCategory,
+        getCategories,
+        searchGoods,
+        sortGoods,
+        addFilter,
+        clearFilter,
+        resetFilters,
+    }
+)(GoodsList)
