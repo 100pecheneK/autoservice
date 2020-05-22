@@ -1,3 +1,3 @@
-import Orders from "./orders"
+import OrdersPage from "./ordersPage"
 
-export default Orders
+export default OrdersPage

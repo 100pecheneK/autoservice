@@ -7,9 +7,11 @@ import PrivateRoute from "../../common/PrivateRoute"
 
 import GoodsList from "./goodsList"
 import GoodsCreate from "./goodsCreate"
+import GoodsDetail from "./goodsDetail"
 
-
-
+import CategoryList from "./categoryList"
+import CategoryCreate from "./categoryCreate"
+import CategoryDetail from "./categoryDetail"
 
 class GoodsPage extends Component {
 
@@ -20,8 +22,12 @@ class GoodsPage extends Component {
             <MainContainer>
                 <Switch>
                     <PrivateRoute exact path='/goods' component={GoodsList}/>
+                    <PrivateRoute exact path='/goods/category' component={CategoryList}/>
+                    <PrivateRoute exact path='/goods/category/create' component={CategoryCreate}/>
                     <PrivateRoute exact path='/goods/create' component={GoodsCreate}/>
-                    {/*<PrivateRoute path='/goods/:id' component={ClientDetail}/>*/}
+                    <PrivateRoute path='/goods/category/:id' component={CategoryDetail}/>
+                    <PrivateRoute path='/goods/:id' component={GoodsDetail}/>
+
                 </Switch>
 
             </MainContainer>

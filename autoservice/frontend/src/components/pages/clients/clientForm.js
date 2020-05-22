@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Field, reduxForm} from 'redux-form'
-import {hiddenField, phoneNumberField, renderField} from "../../fields/fields"
+import {hiddenFieldError, phoneNumberField, renderField} from "../../fields/fields"
 import Form from "../../form/Form"
 import {validators} from "../../../utils"
 
@@ -24,8 +24,7 @@ class ClientForm extends Component {
                 <Field name='phone_number' component={phoneNumberField} label='Номер телефона'/>
                 <Field
                     name='non_field_errors'
-                    type='hidden'
-                    component={hiddenField}
+                    component={hiddenFieldError}
                 />
             </Form>
         )

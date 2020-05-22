@@ -21,12 +21,10 @@ class CategorySerializer(ModelSerializer):
 
 
 class GoodsSerializer(ModelSerializer):
-    # category = SerializerMethodField()
 
     class Meta:
         model = Goods
-        fields = ('title', 'description', 'quantity', 'price', 'category')
-
+        fields = ('id', 'title', 'description', 'quantity', 'price', 'category')
 
     def create(self, validated_data):
         good = Goods.objects.create(
@@ -39,18 +37,15 @@ class GoodsSerializer(ModelSerializer):
         good.save()
         return good
 
-    # def update(self, instance, validated_data):
-    #     inst = super().update(instance, validated_data)
-    #
-    #     status = self.context['request'].data['status']
-    #     if status == 'Админ':
-    #         inst.is_superuser = True
-    #     else:
-    #         inst.is_superuser = False
-    #
-    #     inst.save()
-    #     return inst
 
+class GoodsListSerializer(ModelSerializer):
+    category = SerializerMethodField()
 
+    class Meta:
+        model = Goods
+        fields = ('id', 'title', 'description', 'quantity', 'price', 'category')
+
+    def get_category(self, obj):
+        return obj.category.title
 
 

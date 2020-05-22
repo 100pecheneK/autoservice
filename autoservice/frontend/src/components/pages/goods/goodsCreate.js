@@ -1,24 +1,25 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import {addGood} from "../../../actions/goods"
 
 import Header from "../../header"
-import GoodsForm from "./goodsForm";
+import GoodsForm from "./goodsForm"
 
 
 class GoodsCreate extends Component {
 
-    // onSubmit = formValues => {
-    //     this.props.addAccount(formValues)
-    // }
-
+    onSubmit = formValues => {
+        this.props.addGood(formValues)
+    }
 
 
     render() {
         return (
             <>
-                <Header title={'Создание клиента'} to={'/goods'} create={false}/>
-                <GoodsForm/>
+                <Header title={'Добавление товара'} to={'/goods'} create={false}/>
+                <GoodsForm  destroyOnUnmount={false}
+                            onSubmit={this.onSubmit}/>
             </>
         )
     }
@@ -26,5 +27,5 @@ class GoodsCreate extends Component {
 
 export default connect(
     null,
-    null
+    {addGood}
 )(GoodsCreate)
