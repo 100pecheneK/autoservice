@@ -1,8 +1,9 @@
-**/node_modules
+**/node_modules/
 **/.idea
 */.idea
 **/__pycache__
-**/env
+**/env/
 **/.DS_Store
 */.DS_Store
 **/*.pyc
+/frontend/static/frontend/main.js
