@@ -13,7 +13,7 @@ import {
     ClientsPage,
     GoodsPage,
     HomePage,
-    Orders,
+    OrdersPage,
 } from './pages'
 
 
@@ -32,7 +32,7 @@ class App extends Component {
                         <PrivateRoute path='/clients' component={ClientsPage}/>
                         <PrivateRoute path='/goods' component={GoodsPage}/>
                         <PrivateRoute exact path='/' component={HomePage}/>
-                        <PrivateRoute exact path='/orders' component={Orders}/>
+                        <PrivateRoute path='/orders' component={OrdersPage}/>
                         <Route exact path='/login' component={LoginForm}/>
                     </Switch>
                 </Router>
@@ -40,10 +40,5 @@ class App extends Component {
         )
     }
 }
-
-// const styleLink = document.createElement("link")
-// styleLink.rel = "stylesheet"
-// styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
-// document.head.appendChild(styleLink)
 
 ReactDOM.render(<App/>, document.querySelector('#app'))

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from clients.models import Clients
 from goods.models import Goods
+from orders.models import Orders
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -33,4 +34,9 @@ class ClientDetailView(DetailView):
 
 class AccountDetailView(DetailView):
     model = User
+    template_name = 'frontend/index.html'
+
+
+class OrdersDetailView(DetailView):
+    model = Orders
     template_name = 'frontend/index.html'
