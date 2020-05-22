@@ -72,8 +72,7 @@ class OrderForm extends Component {
                                 <Field
                                     name='phone_number'
                                     component={phoneNumberField}
-                                    label='Номер телефона'/> :
-                            null
+                                    label='Номер телефона'/> : null
                     }
                     <Field name='car' component={renderField} label='Машина'/>
                     <Field name='client_description' component={renderTextField} label='Комментарий клиента'/>

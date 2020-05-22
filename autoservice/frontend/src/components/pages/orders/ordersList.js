@@ -19,7 +19,7 @@ class OrdersList extends Component {
         const fields = ['id', 'Номер телефона', 'Машина', 'Дата сдачи', 'Стутус']
         return (
             <>
-                <Header title={'Клиенты'} to={'/orders/create'}/>
+                <Header title={'Заказы'} to={'/orders/create'}/>
                 <TableExample
                     fields={fields}
                     data={clients}

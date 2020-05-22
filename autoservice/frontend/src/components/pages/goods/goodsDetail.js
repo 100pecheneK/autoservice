@@ -18,7 +18,7 @@ class GoodsDetail extends Component {
     render() {
         return (
             <>
-                <Header title={'Категория'} to={'/goods'} create={false} edit={true}/>
+                <Header title={'Товар'} to={'/goods'} create={false} edit={true}/>
                 <GoodsForm
                     initialValues={this.props.goods}
                     enableReinitialize={true}

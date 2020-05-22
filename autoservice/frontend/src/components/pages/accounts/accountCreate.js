@@ -19,7 +19,7 @@ class AccountCreate extends Component {
     render() {
         return (
             <>
-                <Header title={'Создание клиента'} to={'/accounts'} create={false}/>
+                <Header title={'Создание аккаунта'} to={'/accounts'} create={false}/>
                 <AccountForm destroyOnUnmount={false} onSubmit={this.onSubmit} edit={false}/>
             </>
         )

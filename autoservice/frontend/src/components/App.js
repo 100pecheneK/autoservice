@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, Switch} from 'react-router-dom'
+import {registerLocale} from "react-datepicker"
+import ru from 'date-fns/locale/ru'
 import LoginForm from "./auth"
 import history from '../history'
 import {Provider} from 'react-redux'
@@ -41,4 +43,5 @@ class App extends Component {
     }
 }
 
+registerLocale('ru', ru)
 ReactDOM.render(<App/>, document.querySelector('#app'))

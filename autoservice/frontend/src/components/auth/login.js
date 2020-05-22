@@ -39,8 +39,8 @@ class LoginForm extends Component {
         return (
             <Grid textAlign='center' style={{height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 450}}>
-                    <Header as='h1' color='teal' textAlign='center'>
-                        <Image src='https://react.semantic-ui.com/logo.png'/> Вход
+                    <Header as='h1' color='blue' textAlign='center'>
+                        Вход
                     </Header>
                     <Form size='large' onSubmit={this.props.handleSubmit(this.onSubmit)}>
                         <Segment stacked>
@@ -64,7 +64,7 @@ class LoginForm extends Component {
                                 component={this.hiddenField}
                             />
 
-                            <Button color='teal' fluid size='large'>
+                            <Button color='blue' fluid size='large'>
                                 Войти
                             </Button>
                         </Segment>
