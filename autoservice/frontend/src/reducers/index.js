@@ -6,6 +6,8 @@ import clients from "./clients"
 import clientsContact from "./clientsContact"
 import accounts from "./accounts"
 import orders from "./orders"
+import goods from "./goods"
+
 import {LOGOUT_SUCCESS} from "../actions/types"
 
 const appReducer = combineReducers({
@@ -14,7 +16,8 @@ const appReducer = combineReducers({
     accounts,
     clients,
     clientsContact,
-    orders
+    orders,
+    goods
 })
 
 const rootReducer = (state, action) => {

@@ -32,10 +32,10 @@ export const hiddenField = ({value}) => (
     </div>
 )
 
-export const renderField = ({input, label, meta: {touched, error}}) => (
+export const renderField = ({input, label, type, meta: {touched, error}}) => (
     <div className={`field ${touched && error ? 'error' : ''}`}>
         <label>{label}</label>
-        <input {...input} autoComplete='off'/>
+        <input {...input} type={type} autoComplete='off'/>
         {touched && error && (
             <span className='ui pointing red basic label'>{error}</span>
         )}
@@ -93,7 +93,7 @@ export const renderSelect = ({input, label, meta: {touched, error}, options}) =>
     )
 }
 
-export const renderSearchField = ({options, change}) => {
+export const renderSearchField = ({options, change, placeholder=''}) => {
     const stateOptions = _.map(options.reverse(), (opt, index) => {
         const optionKeys = Object.keys(opt)
         const optionData = {
@@ -107,7 +107,7 @@ export const renderSearchField = ({options, change}) => {
         }
     })
     return (
-        <Dropdown placeholder='Клиент'
+        <Dropdown placeholder={placeholder}
                   onChange={(e, {value})=>change(value)}
                   clearable search selection
                   options={stateOptions}

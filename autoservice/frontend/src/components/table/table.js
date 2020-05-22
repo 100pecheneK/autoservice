@@ -52,23 +52,6 @@ const TableExample = ({fields, data, userId = null, rowClickHandler, deleteHandl
             <Table.Body>
                 {items}
             </Table.Body>
-            <Table.Footer fullWidth>
-                <Table.Row>
-                    <Table.HeaderCell colSpan='12'>
-                        <Menu floated='right' pagination>
-                            <Menu.Item as='a' icon>
-                                <Icon name='chevron left'/>
-                            </Menu.Item>
-                            <Menu.Item as='a'>1</Menu.Item>
-                            <Menu.Item as='a'>2</Menu.Item>
-                            <Menu.Item as='a'>3</Menu.Item>
-                            <Menu.Item as='a' icon>
-                                <Icon name='chevron right'/>
-                            </Menu.Item>
-                        </Menu>
-                    </Table.HeaderCell>
-                </Table.Row>
-            </Table.Footer>
         </Table>
     )
 }
