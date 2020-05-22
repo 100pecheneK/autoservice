@@ -1,4 +1,3 @@
-
 import React, {useState} from "react"
 import InputMask from 'react-input-mask'
 import DatePicker from "react-datepicker"
@@ -33,10 +32,10 @@ export const hiddenField = ({value}) => (
     </div>
 )
 
-export const renderField = ({input, label, meta: {touched, error}}) => (
+export const renderField = ({input, label, type, meta: {touched, error}}) => (
     <div className={`field ${touched && error ? 'error' : ''}`}>
         <label>{label}</label>
-        <input {...input} autoComplete='off'/>
+        <input {...input} type={type} autoComplete='off'/>
         {touched && error && (
             <span className='ui pointing red basic label'>{error}</span>
         )}

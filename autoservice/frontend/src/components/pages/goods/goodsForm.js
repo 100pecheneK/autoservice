@@ -19,9 +19,6 @@ class GoodsForm extends Component {
     }
 
     render() {
-        // const {edit} = this.props
-
-
         return (
             <Form
                 initialValues={this.props.initialValues}
@@ -30,8 +27,8 @@ class GoodsForm extends Component {
             >
                 <Field name='title' component={renderField} label='Наименование'/>
                 <Field name='description' component={renderField} label='Описание'/>
-                <Field name='quantity' component={renderField} label='Количество'/>
-                <Field name='price' component={renderField} label='Цена'/>
+                <Field name='quantity' component={renderField} type={'number'} label='Количество'/>
+                <Field name='price' component={renderField} type={'number'} label='Цена'/>
 
                 <Field name='category' component={renderSelect} label='Категория' options={this.props.categories}/>
                 <Field
